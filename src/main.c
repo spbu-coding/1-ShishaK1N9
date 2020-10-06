@@ -56,7 +56,7 @@ void input_border(double *left_border, double *right_border)
     scanf("%lf", right_border);
 }
 
-double rectangle_rule(double left_border, double right_border, int rectangle_quantity)
+double calc_rectangle_rule(double left_border, double right_border, int rectangle_quantity)
 {
     double step = (right_border - left_border) / rectangle_quantity,  middle = (left_border + left_border + step) / 2;
     double square = 0.0;
@@ -69,7 +69,7 @@ double rectangle_rule(double left_border, double right_border, int rectangle_qua
     return square;
 }
 
-double simpsons_rule(double left_border, double right_border, int rectangle_quantity)
+double calc_simpsons_rule(double left_border, double right_border, int rectangle_quantity)
 {
     double step = (right_border - left_border) / rectangle_quantity, square = 0.0;
     double active_left = left_border, active_right = left_border + step;
@@ -87,8 +87,8 @@ void output_square(double left_border, double right_border, int *array, int leng
 {
     for(int index = 0; index < length; index++)
     {
-        double rectangle_square = rectangle_rule(left_border, right_border, *(array + index));
-        double simpsons_square = simpsons_rule(left_border, right_border, *(array + index));
+        double rectangle_square = calc_rectangle_rule(left_border, right_border, *(array + index));
+        double simpsons_square = calc_simpsons_rule(left_border, right_border, *(array + index));
         printf("%d %.5lf %.5lf\n", *(array + index), rectangle_square, simpsons_square);
     }
 }
